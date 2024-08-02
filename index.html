@@ -108,19 +108,20 @@
               <th style="font-weight: bold;">Description</th>
               <th style="font-weight: bold;">TYPE</th>
               <th style="font-weight: bold;" class="number">PCS</th>
-              <th v-if="'MC' in invoice.Number" style="font-weight: bold;" class="number">WEIGHT (GR)</th>
-              <th v-else-if="'D' in invoice.Number" style="font-weight: bold; font-size: 11px;" class="number">ESTIMATED WEIGHT (GR)</th>
+              <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="number">WEIGHT (GR)</th>
+              <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="number">ESTIMATED WEIGHT (GR)</th>
               
               <th style="font-weight: bold;" class="number">LABOR/GR</th>
               
-              <th v-if="'MC' in invoice.Number" style="font-weight: bold;" class="money">LABOR</th>
-              <th v-else-if="'D' in invoice.Number" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED LABOR</th>
+              <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="money">LABOR</th>
+              <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED LABOR</th>
               
-              <th v-if="'MC' in invoice.Number" style="font-weight: bold;" class="money">GOLD</th>
-              <th v-else-if="'D' in invoice.Number" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED GOLD</th>
+              <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="money">GOLD</th>
+              <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED GOLD</th>
               
-              <th v-if="'MC' in invoice.Number" style="font-weight: bold;" class="money">TOTAL</th>
-              <th v-else-if="'D' in invoice.Number" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED TOTAL</th>
+              <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="money">TOTAL</th>
+              <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED TOTAL</th>
+              
             </tr>
             <tr v-for="(item, index) in invoice.Items">
               <td class="img" style="padding:4px;">
