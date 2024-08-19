@@ -167,7 +167,7 @@
             <div class="overview-items">TOTAL LABOR <span>{{ overview.totalLabor | currency }}</span></div>
             <div class="overview-items last">{{ karat }} TOTAL PRICE <span>{{ overview.totalPrice | currency }}</span></div>
           </div>
-          <div class="overview-item single" v-else-if="invoice.Number.includes('D')" style="font-size: 11px;" :style="{ border: `1px solid ${borderColors[index % borderColors.length]}` }">
+          <div class="overview-item single" v-else-if="invoice.Number.includes('D')" style="font-size: 11px;">
             <div class="overview-title" style="width: 770px;">ESTIMATED {{ karat }} OVERVIEW</div>
             <div class="overview-items">ESTIMATED WEIGHT (gr) <span>{{ overview.totalWeight | round }}</span></div>
             <div class="overview-items">ESTIMATED GOLD/GR <span>${{ overview.goldPerGram | round }}</span></div>
