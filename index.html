@@ -158,7 +158,7 @@
           <div style="width: 22%; display: flex; flex-direction: column; justify-content: center; align-items: center;"><span style="font-weight: bold;">DATE</span><span> {{ invoice.Date | asDateM }}</span></div>
         </div>
 
-        <div class="overview-grid" v-for="(overview, karat) in groupedItems" :key="karat">
+        <div class="overview-grid" v-for="(overview, karat) in groupedItems" :key="karat" :style="{ border: `1px solid ${borderColors[index % borderColors.length]}` }">
           <div class="overview-item single" v-if="invoice.Number.includes('MC')">
             <div class="overview-title" style="width: 770px;">{{ karat }} OVERVIEW</div>
             <div class="overview-items">TOTAL WEIGHT (gr) <span>{{ overview.totalWeight | round }}</span></div>
@@ -167,7 +167,7 @@
             <div class="overview-items">TOTAL LABOR <span>{{ overview.totalLabor | currency }}</span></div>
             <div class="overview-items last">{{ karat }} TOTAL PRICE <span>{{ overview.totalPrice | currency }}</span></div>
           </div>
-          <div class="overview-item single" v-else-if="invoice.Number.includes('D')" style="font-size: 11px;">
+          <div class="overview-item single" v-else-if="invoice.Number.includes('D')" style="font-size: 11px;" :style="{ border: `1px solid ${borderColors[index % borderColors.length]}` }">
             <div class="overview-title" style="width: 770px;">ESTIMATED {{ karat }} OVERVIEW</div>
             <div class="overview-items">ESTIMATED WEIGHT (gr) <span>{{ overview.totalWeight | round }}</span></div>
             <div class="overview-items">ESTIMATED GOLD/GR <span>${{ overview.goldPerGram | round }}</span></div>
