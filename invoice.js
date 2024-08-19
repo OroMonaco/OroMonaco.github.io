@@ -367,6 +367,9 @@ ready(function() {
         });
         return orderedGroups;
       },
+      borderColors() {
+          return ['gray', '#ed5f68', 'blue', 'green', 'orange'];
+        },
       grandTotalQty() {
         return this.invoice.Items.reduce((total, item) => total + item.Quantity, 0);
       },
