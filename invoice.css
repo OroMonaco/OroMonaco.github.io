@@ -321,7 +321,7 @@ div.column-name {
   padding-bottom: 12px;
   page-break-inside: avoid;
   align-items: flex-start;
-  margin-top: 45px;
+  margin-top: 20px;
 }
 
 .overview-title {
@@ -349,7 +349,7 @@ div.column-name {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  margin-top: 7%;
+  margin-top: 3%;
 }
 .overview-grid:nth-child(1) {
   border: 1px solid gray;
