@@ -383,7 +383,7 @@ ready(function() {
         return this.invoice.Items.reduce((total, item) => total + item.Labor, 0);
       },
       grandTotalPrice() {
-        return this.invoice.Items.reduce((total, item) => total + item.Total, 0);
+        return this.invoice.Items.reduce((total, item) => total + item.Total, 0) + this.invoice.Shipping_Cost;
       },
       grandTotalNecklaceQty() {
         return this.invoice.Items.reduce((total, item) => item.Type === 'Necklace' ? total + item.Quantity : total, 0);
