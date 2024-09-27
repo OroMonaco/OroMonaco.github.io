@@ -231,6 +231,7 @@
           <div class="overview-items grand">GRAND TOTAL WEIGHT (gr) <span> {{ grandTotalWeight | round }} </span></div>
           <div class="overview-items grand">GRAND TOTAL GOLD <span>{{ grandTotalGoldPrice | currency }} </span></div>
           <div class="overview-items grand">GRAND TOTAL LABOR <span>{{ grandTotalLabor | currency }} </span></div>
+          <div class="overview-items grand">SHIPPING FEE <span>{{ invoice.Shipping_Cost | currency }} </span></div>
           <div class="overview-items grand last">GRAND TOTAL PRICE <span>{{ grandTotalPrice | currency }} </span></div>
         </div>
         <div class="overview grand" v-else-if="invoice.Number.includes('D')" style="width: 800px;">
