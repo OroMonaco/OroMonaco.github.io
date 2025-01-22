@@ -174,7 +174,7 @@
     <div class="overview-items">GOLD/GR <span>${{ overview[1].goldPerGram | round }}</span></div>
     <div class="overview-items">TOTAL GOLD <span>{{ overview[1].totalGoldPrice | currency }}</span></div>
     <div class="overview-items">TOTAL LABOR <span>{{ overview[1].totalLabor | currency }}</span></div>
-    <div  v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="overview-items">TOTAL DUTY<span>{{ overview[1].totalDuty | currency }}</span>
+    <div  v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="overview-items">TOTAL DUTY<span>{{ overview[1].totalDuty | currency }}</span></div>
     <div class="overview-items last">{{ overview[0] }} TOTAL PRICE <span>{{ overview[1].totalPrice | currency }}</span></div>
   </div>
   <div class="overview-item single" v-else-if="invoice.Number.includes('D')" style="font-size: 11px;">
