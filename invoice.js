@@ -310,6 +310,7 @@ ready(function() {
                 totalWeight: 0,
                 totalGoldPrice: 0,
                 totalLabor: 0,
+                totalDuty: 0,
                 goldPerGram: 0,
                 totalPrice: 0,
                 totalQty: 0,
@@ -328,7 +329,8 @@ ready(function() {
             groups[karat].totalWeight += item.Weight;
             groups[karat].totalGoldPrice += item.Gold;
             groups[karat].totalLabor += item.Labor;
-            groups[karat].totalPrice += item.Gold + item.Labor;
+            groups[karat].totalDuty += item.Sold_Duty;
+            groups[karat].totalPrice += item.Gold + item.Labor + item.Sold_Duty;
             groups[karat].goldPerGram = groups[karat].totalGoldPrice / groups[karat].totalWeight;
             groups[karat].totalQty += item.Quantity;
 
@@ -381,6 +383,9 @@ ready(function() {
       },
       grandTotalLabor() {
         return this.invoice.Items.reduce((total, item) => total + item.Labor, 0);
+      },
+      grandTotalDuty() {
+        return this.invoice.Items.reduce((total, item) => total + item.Sold_Duty, 0);
       },
       grandTotalPrice() {
         return this.invoice.Items.reduce((total, item) => total + item.Total, 0) + this.invoice.Shipping_Cost;
