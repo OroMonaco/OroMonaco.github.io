@@ -50,9 +50,10 @@
                 <div style="font-size: 15px;">54 west 47th Street</div>
                 <div style="font-size: 15px;">Suite 5R</div>
                 <div style="font-size: 15px;">New York, NY, 10036</div>
-                  <div style="font-size: 15px;" class="phone">9145089314</div>
-                  <div style="font-size: 15px;" class="email">ceyda.t@monacochain.com</div>
-                  <div style="font-size: 15px;" class="website"><a v-bind:href="business.Url" style="text-transform: none;">monacochainwholesale.com</a></div>
+                  <div v-if="!invoice.Client.Business_Name.includes('Quality Gold')" style="font-size: 15px;" class="phone">9145089314</div>
+                  <div  v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  style="font-size: 15px;" class="email">ceyda.t@monacochain.com</div>
+                  <div  v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  style="font-size: 15px;" class="website"><a v-bind:href="business.Url" style="text-transform: none;">monacochainwholesale.com</a></div>
+                   <div  v-if="invoice.Client.Business_Name.includes('Quality Gold')"  style="font-size: 15px;" class="website"><a v-bind:href="business.Url" style="text-transform: none;">monacochain.com</a></div>               
                 </div>
               </template>
             </div>
