@@ -120,6 +120,7 @@
               <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="money">GOLD</th>
               <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED GOLD</th>
               
+              <th v-if="business.Business_Name.includes('Quality Gold')" class="money">DUTY</th>
               <th v-if="invoice.Number.includes('MC')" style="font-weight: bold;" class="money">TOTAL</th>
               <th v-else-if="invoice.Number.includes('D')" style="font-weight: bold; font-size: 11px;" class="money">ESTIMATED TOTAL</th>
               
@@ -148,6 +149,7 @@
               <td class="money">{{ item.Labor_Gr | currency }}</td>
               <td class="money">{{ item.Labor | currency }}</td>
               <td class="money">{{ item.Gold | currency }}</td>
+              <td v-if="business.Business_Name.includes('Quality Gold')" class="money">{{ item.Duty | currency }}</td>
               <td class="money">{{ item.Total | currency }}</td>
             </tr>
           </template>
