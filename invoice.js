@@ -377,6 +377,7 @@ ready(function() {
       },
       grandTotalWeight() {
         return this.invoice.Items.reduce((total, item) => total + item.Weight, 0);
+        
       },
       grandTotalGoldPrice() {
         return this.invoice.Items.reduce((total, item) => total + item.Gold, 0);
