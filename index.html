@@ -149,7 +149,7 @@
               <td class="money">{{ item.Labor_Gr | currency }}</td>
               <td class="money">{{ item.Labor | currency }}</td>
               <td class="money">{{ item.Gold | currency }}</td>
-              <td v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="money">{{ item.Duty | currency }}</td>
+              <td v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="money">{{ item.Sold_Duty | currency }}</td>
               <td class="money">{{ item.Total | currency }}</td>
             </tr>
           </template>
