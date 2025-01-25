@@ -74,10 +74,10 @@
                 <template v-else>
                   <div>{{ business.Contact_Name }}</div>
                   <div>{{ business.Business_Name }}</div>
-                  <template v-if="business.Street1">
+                  <template v-if="business.Address_1">
                     {{ business.Address_1 }},
                   </template>
-                  <template v-if="business.Street2">
+                  <template v-if="business.Address_2">
                     {{ business.Address_2 }},
                   </template>
                  <span>{{ business.City }}, {{ business.State }}, {{ business.Zip_Code }}</span> 
