@@ -127,7 +127,8 @@
               
             </tr>
             <tr v-for="(item, index) in invoice.Items">
-              <td class="img" style="padding:4px;">
+              <td class="img" style="padding:4px 4px 0 4px;">
+                <div style="display:flex; flex-direction: column; align-items: center;">
               <img 
                 :class="'img-' + index" 
                 :style="invoice.Client.Business_Name.includes('Quality Gold') 
@@ -138,6 +139,11 @@
                         ? 'height: 110px;' 
                         : ''))" 
               />
+                  <p style="margin:0;">
+                    {{ item.SKU }}
+                  </p>
+                </div>
+
               <td class="number">{{ item.Karat }}</td>
               <td class="item-t" style="padding:5px;">{{ item.Description }}  <br><br>
                 <small v-if="item.Type === 'Ring'" style="font-size: 12px; font-weight: bold;">
