@@ -390,7 +390,7 @@ ready(function() {
         // Only calculate if client is Quality Gold, otherwise it's 0
         if (this.invoice.Client && this.invoice.Client.Business_Name.includes('Quality Gold')) {
             return this.invoice.Items.reduce((total, item) => total + (item.Sold_Duty || 0), 0);
-        },
+        }
     },
       // **** START NEW COMPUTED PROPERTY ****
       additionalDuty() {
