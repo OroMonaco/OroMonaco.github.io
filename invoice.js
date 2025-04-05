@@ -391,6 +391,7 @@ ready(function() {
         if (this.invoice.Client && this.invoice.Client.Business_Name.includes('Quality Gold')) {
             return this.invoice.Items.reduce((total, item) => total + (item.Sold_Duty || 0), 0);
         },
+    },
       // **** START NEW COMPUTED PROPERTY ****
       additionalDuty() {
         // Calculate 10% of (Grand Total Gold + Grand Total Labor)
