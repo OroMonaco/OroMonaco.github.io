@@ -385,11 +385,31 @@ ready(function() {
       grandTotalLabor() {
         return this.invoice.Items.reduce((total, item) => total + item.Labor, 0);
       },
-      grandTotalDuty() {
-        return this.invoice.Items.reduce((total, item) => total + item.Sold_Duty, 0);
+      grandTotalDuty() { // This is the existing 5.8% Duty for Quality Gold
+        if (!Array.isArray(this.invoice.Items)) return 0;
+        // Only calculate if client is Quality Gold, otherwise it's 0
+        if (this.invoice.Client && this.invoice.Client.Business_Name.includes('Quality Gold')) {
+            return this.invoice.Items.reduce((total, item) => total + (item.Sold_Duty || 0), 0);
+        },
+      // **** START NEW COMPUTED PROPERTY ****
+      additionalDuty() {
+        // Calculate 10% of (Grand Total Gold + Grand Total Labor)
+        const gold = typeof this.grandTotalGoldPrice === 'number' ? this.grandTotalGoldPrice : 0;
+        const labor = typeof this.grandTotalLabor === 'number' ? this.grandTotalLabor : 0;
+        return (gold + labor) * 0.1;
       },
       grandTotalPrice() {
-        return this.invoice.Items.reduce((total, item) => total + item.Total, 0) + this.invoice.Shipping_Cost;
+        // Recalculate based on components for accuracy
+        const gold = typeof this.grandTotalGoldPrice === 'number' ? this.grandTotalGoldPrice : 0;
+        const labor = typeof this.grandTotalLabor === 'number' ? this.grandTotalLabor : 0;
+        // Use the computed grandTotalDuty which handles the Quality Gold condition
+        const dutyOriginal = typeof this.grandTotalDuty === 'number' ? this.grandTotalDuty : 0;
+        // Use the new computed additionalDuty
+        const duty10Percent = typeof this.additionalDuty === 'number' ? this.additionalDuty : 0;
+        const shipping = typeof this.invoice.Shipping_Cost === 'number' ? this.invoice.Shipping_Cost : 0;
+
+        // Sum the components: Gold + Labor + Original Duty (if applicable) + New 10% Duty + Shipping
+        return gold + labor + dutyOriginal + duty10Percent + shipping;
       },
       grandTotalNecklaceQty() {
         return this.invoice.Items.reduce((total, item) => item.Type === 'Necklace' ? total + item.Quantity : total, 0);
