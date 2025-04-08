@@ -253,7 +253,9 @@
           <div class="overview-items grand">GRAND TOTAL LABOR <span>{{ grandTotalLabor | currency }} </span></div>
           <div v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="overview-items grand">GRAND TOTAL DUTY <span>{{ grandTotalDuty | currency }} </span></div>
           <!-- **** START NEW LINE **** -->
-          <div class="overview-items grand">10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }} </span></div>
+          <div class="overview-items grand" v-if="additionalDuty > 0">
+            10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
+          </div>
           <!-- **** END NEW LINE **** -->
           <div class="overview-items grand">SHIPPING FEE <span>{{ invoice.Shipping_Cost | currency }} </span></div>
           <div class="overview-items grand last">GRAND TOTAL PRICE <span>{{ grandTotalPrice | currency }} </span></div>
@@ -266,7 +268,9 @@
           <div class="overview-items grand">ESTIMATED GRAND TOTAL GOLD <span>{{ grandTotalGoldPrice | currency }} </span></div>
           <div class="overview-items grand">ESTIMATED GRAND TOTAL LABOR <span>{{ grandTotalLabor | currency }} </span></div>
            <!-- **** START NEW LINE **** -->
-          <div class="overview-items grand">ESTIMATED 10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }} </span></div>
+          <div class="overview-items grand" v-if="additionalDuty > 0">
+            ESTIMATED 10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
+          </div>
           <!-- **** END NEW LINE **** -->
           <!-- Note: Shipping is often not included in estimates, but adding if needed -->
           <div class="overview-items grand">SHIPPING FEE <span>{{ invoice.Shipping_Cost | currency }} </span></div>
