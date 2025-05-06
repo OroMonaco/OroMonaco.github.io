@@ -269,7 +269,7 @@
           <div class="overview-items grand">ESTIMATED GRAND TOTAL LABOR <span>{{ grandTotalLabor | currency }} </span></div>
            <!-- **** START NEW LINE **** -->
           <div class="overview-items grand" v-if="additionalDuty > 0">
-            ESTIMATED 10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
+            ESTIMATED {{ (invoice.DUTY_ * 100).toFixed(1) }}% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
           </div>
           <!-- **** END NEW LINE **** -->
           <!-- Note: Shipping is often not included in estimates, but adding if needed -->
