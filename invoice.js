@@ -394,17 +394,10 @@ ready(function() {
     },
       // **** START NEW COMPUTED PROPERTY ****
       additionalDuty() {
-        const thresholdDate = new Date("2025-04-07"); // YYYY-MM-DD
-        const invoiceDate = new Date(this.invoice.Date);
-      
-        // Only calculate if date is on or after April 7, 2025
-        if (invoiceDate >= thresholdDate) {
-          const gold = typeof this.grandTotalGoldPrice === 'number' ? this.grandTotalGoldPrice : 0;
-          const labor = typeof this.grandTotalLabor === 'number' ? this.grandTotalLabor : 0;
-          return (gold + labor) * 0.1;
-        } else {
-          return 0; // Do not apply additional duty
-        }
+      const duty_ = this.invoice.DUTY_;
+      const gold = typeof this.grandTotalGoldPrice === 'number' ? this.grandTotalGoldPrice : 0;
+      const labor = typeof this.grandTotalLabor === 'number' ? this.grandTotalLabor : 0;
+      return (gold + labor) * duty_;
       },
       grandTotalPrice() {
         // Recalculate based on components for accuracy
