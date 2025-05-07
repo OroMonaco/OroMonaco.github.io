@@ -254,7 +254,7 @@
           <div v-if="invoice.Client.Business_Name.includes('Quality Gold')" class="overview-items grand">GRAND TOTAL DUTY <span>{{ grandTotalDuty | currency }} </span></div>
           <!-- **** START NEW LINE **** -->
           <div class="overview-items grand" v-if="additionalDuty > 0">
-            10% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
+            {{ (invoice.DUTY_ * 100).toFixed(1) }}% ADDITIONAL DUTY <span>{{ additionalDuty | currency }}</span>
           </div>
           <!-- **** END NEW LINE **** -->
           <div class="overview-items grand">SHIPPING FEE <span>{{ invoice.Shipping_Cost | currency }} </span></div>
