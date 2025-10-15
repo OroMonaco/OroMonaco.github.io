@@ -265,6 +265,7 @@
           </div>
           <!-- **** END NEW LINE **** -->
           <div class="overview-items grand">SHIPPING FEE <span>{{ invoice.Shipping_Cost | currency }} </span></div>
+          <div v-if="invoice.Report_Type.includes('STOCK_REPORT') && invoice.Discount > 2" class="overview-items grand">DISCOUNT <span>{{ invoice.Discount | currency }} </span></div>
           <div class="overview-items grand last">GRAND TOTAL PRICE <span>{{ grandTotalPrice | currency }} </span></div>
         </div>
 
