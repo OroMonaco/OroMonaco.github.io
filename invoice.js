@@ -408,9 +408,9 @@ ready(function() {
         // Use the new computed additionalDuty
         const duty10Percent = typeof this.additionalDuty === 'number' ? this.additionalDuty : 0;
         const shipping = typeof this.invoice.Shipping_Cost === 'number' ? this.invoice.Shipping_Cost : 0;
-
+        const discount = typeof this.invoice.Discount === 'number' ? this.invoice.Discount : 0;
         // Sum the components: Gold + Labor + Original Duty (if applicable) + New 10% Duty + Shipping
-        return gold + labor + dutyOriginal + duty10Percent + shipping;
+        return gold + labor + dutyOriginal + duty10Percent + shipping - discount;
       },
       grandTotalNecklaceQty() {
         return this.invoice.Items.reduce((total, item) => item.Type === 'Necklace' ? total + item.Quantity : total, 0);
