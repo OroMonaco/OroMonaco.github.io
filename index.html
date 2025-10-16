@@ -42,7 +42,7 @@
           <div class="supplier" style="text-align: left;" >
             <img style="margin-left: -4%; margin-bottom: 2%;" src="mc-log.png" width="250" />
             <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])" style=" display: flex;flex-direction: column; gap:5px;">
-              <template v-if="typeof(business) !== 'Oromonaco'">
+              <template v-if="typeof(business)  === 'string' && business !== 'Oromonaco'">
                 <div class="address newlined">{{ business }}</div>
               </template>
               <template v-else-if="invoice.Invoicer === 'Oromonaco'">
