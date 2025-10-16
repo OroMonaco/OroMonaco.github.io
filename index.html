@@ -42,8 +42,17 @@
           <div class="supplier" style="text-align: left;" >
             <img style="margin-left: -4%; margin-bottom: 2%;" src="mc-log.png" width="250" />
             <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])" style=" display: flex;flex-direction: column; gap:5px;">
-              <template v-if="typeof(business) === 'string'">
+              <template v-if="typeof(business) !== 'Oromonaco'">
                 <div class="address newlined">{{ business }}</div>
+              </template>
+              <template v-else-if="invoice.Invoicer === 'Oromonaco'">
+                <div class="address" style="display: flex;flex-direction: column; gap: 5px;">
+                <div style="font-size: 15px;">54 west 47th Street</div>
+                <div style="font-size: 15px;">New York, NY, 10036</div>
+                  <div v-if="!invoice.Client.Business_Name.includes('Quality Gold')" style="font-size: 15px;" class="phone">+19294121914</div>
+                  <div  v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  style="font-size: 15px;" class="email">info@oromonaco.com</div>
+                  <div  v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  style="font-size: 15px;" class="website"><a v-bind:href="business.Url" style="text-transform: none;">oromoanco.com</a></div>
+                </div>
               </template>
               <template v-else>
                 <div class="address" style="display: flex;flex-direction: column; gap: 5px;">
@@ -62,6 +71,7 @@
             <div style="margin-top: 64px;">
               <div class="meta title" v-if="invoice.Number.includes('MC')">Invoice</div>
               <div class="meta title" v-else-if="invoice.Number.includes('D')">Draft-Invoice</div>
+              <div class="meta title" v-else>Invoice</div>
               <div class="info"><span class="meta">ORDER NO</span> #{{ invoice.Number }}</div>
               <div class="info" v-if="invoice.Issued"><div class="meta date-tag">ORDER DATE</div>{{ invoice.Date | asDate }}</div>
             </div>
@@ -170,7 +180,8 @@
             </tr>
           </template>
         </table>
-        <div style="border: 1px solid black;display: flex;gap: 12%; padding: 10px; page-break-before: always;">
+            
+        <div v-if="invoice.Invoicer !== 'Oromonaco'" style="border: 1px solid black;display: flex;gap: 12%; padding: 10px; page-break-before: always;">
           <div style="width: 22%; display: flex; flex-direction: column; justify-content: center; align-items: center;"><span style="font-weight: bold;">FIX OZ</span> <span>{{ invoice.Sold_Fix_Oz | currency }}</span> </div>
           <span style="display: flex;
           flex-direction: row;
@@ -183,7 +194,7 @@
           <div style="width: 22%; display: flex; flex-direction: column; justify-content: center; align-items: center;"><span style="font-weight: bold;">DATE</span><span> {{ invoice.Date | asDateM }}</span></div>
         </div>
 
-<div class="overview-grid" v-for="(overview, index) in Object.entries(groupedItems)" :key="index" :style="{ border: `1px solid ${borderColors[index % borderColors.length]}` }">
+<div v-if="invoice.Invoicer !== 'Oromonaco'" class="overview-grid" v-for="(overview, index) in Object.entries(groupedItems)" :key="index" :style="{ border: `1px solid ${borderColors[index % borderColors.length]}` }">
   <div class="overview-item single" v-if="invoice.Number.includes('MC')">
     <div class="overview-title" style="width: 770px;">{{ overview[0] }} OVERVIEW</div>
     <div class="overview-items">TOTAL WEIGHT (gr) <span>{{ overview[1].totalWeight | round }}</span></div>
@@ -286,7 +297,7 @@
         </div>
 
   
-        <div v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  class="overview payment">
+        <div v-if="!invoice.Client.Business_Name.includes('Quality Gold') && invoice.Invoicer !== 'Oromonaco'"  class="overview payment">
           <div v-for="payment in groupedPayments" v-if="payment.Method && payment.Method !== '' && payment.Amount !== 0" class="overview-items" > 
             <span style="width:95px;">Payment</span>
             <span style="width:95px;">{{ payment.Date | asDateM }}</span>
@@ -296,7 +307,7 @@
           </div>
         <div class="overview-items grand last" style="width: 37.5%;">Balance Due <span>{{ invoice.Balance | currency }} </span></div>
       </div>
-      <span v-if="!invoice.Client.Business_Name.includes('Quality Gold')"  style="border-bottom: 1px solid black;display: block;font-weight: bold;margin-top: 5%;">PAYMENT OPTIONS</span>
+      <span v-if="!invoice.Client.Business_Name.includes('Quality Gold') && invoice.Invoicer !== 'Oromonaco'"  style="border-bottom: 1px solid black;display: block;font-weight: bold;margin-top: 5%;">PAYMENT OPTIONS</span>
       <div v-if="!invoice.Client.Business_Name.includes('Quality Gold')" style="display:flex;margin-top: 15px;flex-direction: row;">
         <div class="payment-options" style="border-right: 1px solid black;"><span class="payment-options-title">WIRE</span>
         <div class="wire">
@@ -309,7 +320,7 @@
           <span class="wire_items"><span style="font-weight: bold;">54 West 47th Street Suite 5R, NY, NY, 10036</span> </span>
         </div>
         </div>
-        <div class="payment-options" style="border-right: 1px solid black;">
+        <div v-if="invoice.Invoicer !== 'Oromonaco'" class="payment-options" style="border-right: 1px solid black;">
           <span class="payment-options-title" style="margin-left: 5%;">CHECK</span>
           <div class="wire">
             <span style="font-size: 13px; margin-left: 5%;">Payable to: <br>{{ invoice.Check }}</span>
@@ -322,7 +333,7 @@
           </div>
           </div>
         </div>
-  <div v-if="!invoice.Client.Business_Name.includes('Quality Gold')" style="page-break-before: always;">
+  <div v-if="!invoice.Client.Business_Name.includes('Quality Gold') && invoice.Invoicer !== 'Oromonaco'" style="page-break-before: always;">
         <h3>DEPOSIT</h3>
         <ul>
             <li>A 25% deposit of the estimated value is required to place an order with the factory. <span style="color:red;">Please note:</span> your order will not be placed until the deposit is received. The deposit can be made through one of the following methods:</li>
